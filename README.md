@@ -1,52 +1,153 @@
-# Smart Water Quality Monitoring System (SWQMS)
+# 💧 Smart Water Quality Monitoring System (SWQMS)
 
-A full-stack web-based simulation platform for monitoring, analyzing and visualizing
-urban water quality. Built as per the attached SRS & SDD.
+A full-stack web-based simulation platform for **monitoring, analyzing, and visualizing urban water quality** in real time.
 
-**Tech stack:** React.js (Vite) + Node.js/Express.js + MongoDB + Leaflet + Chart.js
+Built using **React.js (Vite), Node.js/Express.js, MongoDB, Leaflet, and Chart.js**.
 
-## Features
+---
 
-- JWT authentication with Role-Based Access Control (Admin / Operator)
-- Real-time simulation engine (Start / Pause / Resume / Stop / Replay + Speed)
-- Multi-parameter monitoring (pH, Hardness, TDS, Chloramines, Sulfate, Conductivity,
-  Organic Carbon, Trihalomethanes, Turbidity) with WHO/BIS safety ranges
-- Water Quality Index (WQI) calculation + classification (Excellent/Good/Poor/Unsafe)
-- Time-series trend analysis with line charts
-- Map-based visualization (OpenStreetMap + Leaflet) with color-coded markers
-- Heatmap of contamination intensity
-- Contamination detection, origin tracing and risk prediction (Low/Med/High)
-- Alerts with acknowledge/resolve workflow
-- Report generation (CSV + PDF)
-- Admin: manual data entry, edit, delete
+## 📸 Features
 
-## Project Structure
+### 🔐 Authentication & Security
 
-```
+* JWT Authentication
+* Role-Based Access Control (RBAC)
+
+  * 👨‍💼 Admin
+  * 👷 Operator
+
+### ⚡ Real-Time Simulation Engine
+
+* ▶️ Start Simulation
+* ⏸️ Pause
+* 🔄 Resume
+* ⏹️ Stop
+* 🔁 Replay
+* 🚀 Adjustable Simulation Speed
+
+### 🧪 Water Quality Monitoring
+
+Monitor multiple water-quality parameters:
+
+* pH
+* Hardness
+* Total Dissolved Solids (TDS)
+* Chloramines
+* Sulfate
+* Conductivity
+* Organic Carbon
+* Trihalomethanes
+* Turbidity
+
+✅ WHO & BIS safety ranges included
+
+### 📊 Water Quality Analysis
+
+* Water Quality Index (WQI) Calculation
+* Quality Classification:
+
+  * 🟢 Excellent
+  * 🟡 Good
+  * 🟠 Poor
+  * 🔴 Unsafe
+
+### 📈 Trend Analysis
+
+* Interactive Time-Series Charts
+* Historical Data Visualization
+* Real-Time Parameter Tracking
+
+### 🗺️ Geographic Visualization
+
+* OpenStreetMap + Leaflet Integration
+* Color-Coded Monitoring Locations
+* Contamination Heatmap
+* Interactive Map Controls
+
+### 🚨 Alert Management
+
+* Threshold Breach Detection
+* Alert Acknowledgement
+* Alert Resolution Workflow
+* Risk Prediction:
+
+  * 🟢 Low
+  * 🟡 Medium
+  * 🔴 High
+
+### 🔍 Advanced Analytics
+
+* Contamination Detection
+* Source/Origin Tracing
+* Risk Assessment
+* Data Summaries
+
+### 📄 Reporting
+
+* CSV Export
+* PDF Report Generation
+* Summary Reports
+
+### ⚙️ Administrative Controls
+
+* Add Water Records
+* Edit Existing Data
+* Delete Records
+* Full Dataset Management
+
+---
+
+## 🏗️ Project Structure
+
+```text
 swqms/
-├── backend/              Node.js + Express API
-│   ├── models/           Mongoose schemas
-│   ├── routes/           REST endpoints
-│   ├── middleware/       JWT auth
-│   ├── utils/            WQI + thresholds
-│   ├── seed.js           Auto-loads CSV dataset + seeds users
+├── backend/              # Node.js + Express API
+│   ├── models/           # Mongoose Schemas
+│   ├── routes/           # REST API Routes
+│   ├── middleware/       # JWT Authentication
+│   ├── utils/            # WQI & Threshold Utilities
+│   ├── seed.js           # Dataset + User Seeding
 │   └── server.js
-├── frontend/             React + Vite SPA
-│   └── src/pages/        Login, Dashboard, MapView, Alerts, Reports, Admin
-├── dataset.csv           Delhi water-quality dataset (included)
+│
+├── frontend/             # React + Vite SPA
+│   └── src/pages/
+│       ├── Login
+│       ├── Dashboard
+│       ├── MapView
+│       ├── Alerts
+│       ├── Reports
+│       └── Admin
+│
+├── dataset.csv
 └── README.md
 ```
 
 ---
 
-## Prerequisites (install these on your laptop)
+## 🛠️ Prerequisites
 
-1. **Node.js** v18 or higher  — https://nodejs.org
-2. **MongoDB Community Edition** v6+  — https://www.mongodb.com/try/download/community
-   - Make sure `mongod` is running on default port `27017`.
-3. **Yarn** (recommended) — `npm install -g yarn`  (or just use npm)
+Install the following before running the project:
 
-Verify:
+### 📦 Node.js
+
+Version 18 or higher
+
+https://nodejs.org
+
+### 🍃 MongoDB
+
+MongoDB Community Edition v6+
+
+https://www.mongodb.com/try/download/community
+
+### 🧶 Yarn (Recommended)
+
+```bash
+npm install -g yarn
+```
+
+### ✅ Verify Installation
+
 ```bash
 node -v
 mongod --version
@@ -55,41 +156,71 @@ yarn -v
 
 ---
 
-## Step-by-Step Setup
+# 🚀 Setup Guide
 
-### 1. Unzip the project
+## 1️⃣ Extract the Project
 
 ```bash
 unzip swqms.zip
 cd swqms
 ```
 
-### 2. Start MongoDB (if not already running)
+---
 
-- **Windows:** MongoDB usually runs as a service after install. Otherwise run:
-  `"C:\Program Files\MongoDB\Server\6.0\bin\mongod.exe" --dbpath C:\data\db`
-- **macOS (Homebrew):** `brew services start mongodb-community`
-- **Linux:** `sudo systemctl start mongod`
+## 2️⃣ Start MongoDB
 
-### 3. Configure & install the backend
+### Windows
+
+```bash
+"C:\Program Files\MongoDB\Server\6.0\bin\mongod.exe" --dbpath C:\data\db
+```
+
+### macOS
+
+```bash
+brew services start mongodb-community
+```
+
+### Linux
+
+```bash
+sudo systemctl start mongod
+```
+
+---
+
+## 3️⃣ Configure Backend
 
 ```bash
 cd backend
-cp .env.example .env       
-yarn install               
+cp .env.example .env
+yarn install
 ```
 
-Open `.env` and change `JWT_SECRET` to any random string. Default credentials
-`admin/admin123` and `operator/operator123` are defined there — feel free to change.
+Update:
 
-### 4. Start the backend (auto-seeds DB + dataset on first run)
+```env
+JWT_SECRET=your_random_secret
+```
+
+Default users:
+
+```text
+Admin    : admin / admin123
+Operator : operator / operator123
+```
+
+---
+
+## 4️⃣ Start Backend
 
 ```bash
-yarn start                 
+yarn start
 ```
 
-You should see:
-```
+Expected output:
+
+```text
 [mongo] connected: mongodb://localhost:27017/swqms
 [seed] empty DB detected, running seed...
 [seed] user created: admin/admin
@@ -98,86 +229,244 @@ You should see:
 [server] listening on :5000
 ```
 
-### 5. Install & start the frontend (new terminal)
+---
+
+## 5️⃣ Start Frontend
+
+Open a new terminal:
 
 ```bash
 cd frontend
-yarn install               
-yarn dev                   
+yarn install
+yarn dev
 ```
 
-Open http://localhost:3000 in your browser.
+Visit:
 
-### 6. Log in
-
-- **Admin:**    `admin` / `admin123`   (full access)
-- **Operator:** `operator` / `operator123`  (read + acknowledge alerts)
-
-### 7. Run the simulation
-
-1. Go to **Dashboard** → click **Start**.
-2. Current record updates every ~2s. Adjust speed via the dropdown.
-3. Watch WQI, parameter cards, and the trend chart update in real time.
-4. Switch to **Map View** to see color-coded locations + heatmap.
-5. **Alerts** page shows threshold breaches; Admin can also see **Risk Prediction**.
-6. **Reports** page downloads CSV or PDF summaries.
+```text
+http://localhost:3000
+```
 
 ---
 
-## Building for Production (optional)
+## 6️⃣ Login
+
+### 👨‍💼 Admin
+
+```text
+Username: admin
+Password: admin123
+```
+
+### 👷 Operator
+
+```text
+Username: operator
+Password: operator123
+```
+
+---
+
+## 7️⃣ Run Simulation
+
+Navigate to:
+
+```text
+Dashboard → Start
+```
+
+Features available:
+
+* 📊 Live Parameter Updates
+* 📈 Trend Charts
+* 🧪 WQI Monitoring
+* 🗺️ Interactive Map
+* 🚨 Alerts Dashboard
+* 📄 Report Downloads
+
+---
+
+# 🌍 System Modules
+
+| Module            | Description                  |
+| ----------------- | ---------------------------- |
+| 🔐 Authentication | JWT-based Login System       |
+| 📊 Dashboard      | Live Monitoring & Statistics |
+| 🗺️ Map View      | Geographic Visualization     |
+| 🚨 Alerts         | Threshold Breach Management  |
+| 📈 Analytics      | WQI & Trend Analysis         |
+| 📄 Reports        | CSV/PDF Exports              |
+| ⚙️ Admin Panel    | CRUD Operations              |
+
+---
+
+# 🔌 API Endpoints
+
+## Authentication
+
+```http
+POST /api/auth/login
+```
+
+## Data
+
+```http
+GET /api/data
+GET /api/data/latest
+GET /api/data/locations
+GET /api/data/timeseries
+GET /api/data/summary
+```
+
+## Simulation
+
+```http
+POST /api/simulation/start
+POST /api/simulation/pause
+POST /api/simulation/resume
+POST /api/simulation/stop
+POST /api/simulation/replay
+POST /api/simulation/speed
+
+GET  /api/simulation/state
+```
+
+## Alerts
+
+```http
+GET   /api/alerts
+PATCH /api/alerts/:id
+GET   /api/alerts/origin
+GET   /api/alerts/predict
+```
+
+## Reports
+
+```http
+GET /api/reports/csv
+GET /api/reports/pdf
+```
+
+## Admin
+
+```http
+POST   /api/admin/data
+PUT    /api/admin/data/:id
+DELETE /api/admin/data/:id
+```
+
+---
+
+# 🏭 Production Build
+
+Frontend:
 
 ```bash
 cd frontend
 yarn build
+```
+
+Backend:
+
+```bash
 cd ../backend
 yarn start
 ```
 
-The backend will automatically serve `frontend/dist` at `http://localhost:5000`.
+Application:
+
+```text
+http://localhost:5000
+```
 
 ---
 
-## Reset the database
+# 🔄 Reset Database
 
 ```bash
 mongosh swqms --eval "db.dropDatabase()"
 ```
 
-## API Endpoints (quick reference)
+---
 
-| Method | Endpoint                        | Access   |
-|--------|---------------------------------|----------|
-| POST   | /api/auth/login                 | public   |
-| GET    | /api/data                       | auth     |
-| GET    | /api/data/locations             | auth     |
-| GET    | /api/data/latest                | auth     |
-| GET    | /api/data/timeseries            | auth     |
-| GET    | /api/data/summary               | auth     |
-| POST   | /api/simulation/start           | admin    |
-| POST   | /api/simulation/pause           | admin    |
-| POST   | /api/simulation/resume          | admin    |
-| POST   | /api/simulation/stop            | admin    |
-| POST   | /api/simulation/replay          | admin    |
-| POST   | /api/simulation/speed           | admin    |
-| GET    | /api/simulation/state           | auth     |
-| GET    | /api/alerts                     | auth     |
-| PATCH  | /api/alerts/:id                 | auth     |
-| GET    | /api/alerts/origin              | auth     |
-| GET    | /api/alerts/predict             | auth     |
-| GET    | /api/reports/csv                | auth     |
-| GET    | /api/reports/pdf                | auth     |
-| POST   | /api/admin/data                 | admin    |
-| PUT    | /api/admin/data/:id             | admin    |
-| DELETE | /api/admin/data/:id             | admin    |
+# 🐞 Troubleshooting
+
+### MongoDB Connection Issues
+
+✔ Verify MongoDB service is running
+
+```bash
+mongod
+```
+
+Check:
+
+```env
+MONGO_URL=mongodb://localhost:27017/swqms
+```
 
 ---
 
-## Troubleshooting
+### Port Already In Use
 
-- **Backend won't connect to MongoDB:** confirm `mongod` is running, then check `MONGO_URL` in `backend/.env`.
-- **Port already in use:** change `PORT` in `backend/.env` (5000) or use another Vite port via `--port`.
-- **CSV not imported:** verify `dataset.csv` is next to the `backend/` folder or edit `DATASET_PATH` in `.env`.
-- **CORS/proxy issues:** frontend dev server proxies `/api` to `http://localhost:5000` (see `vite.config.js`). Make sure backend is on 5000.
-- **Leaflet markers not showing:** check browser console; clear cache and reload.
+Change:
 
-Enjoy exploring your data! 💧
+```env
+PORT=5000
+```
+
+or
+
+```bash
+vite --port 3001
+```
+
+---
+
+### Dataset Not Imported
+
+Verify:
+
+```text
+dataset.csv
+```
+
+exists at the project root.
+
+---
+
+### CORS Issues
+
+Ensure frontend proxy points to:
+
+```text
+http://localhost:5000
+```
+
+---
+
+### Leaflet Markers Missing
+
+* Open Browser Console
+* Clear Cache
+* Reload Application
+
+---
+
+# 💻 Tech Stack
+
+| Technology         | Usage             |
+| ------------------ | ----------------- |
+| ⚛️ React.js (Vite) | Frontend          |
+| 🟢 Node.js         | Runtime           |
+| 🚂 Express.js      | Backend API       |
+| 🍃 MongoDB         | Database          |
+| 🗺️ Leaflet        | Map Visualization |
+| 📊 Chart.js        | Data Charts       |
+| 🔐 JWT             | Authentication    |
+
+---
+
+## 🌊 Smart Monitoring for Safer Water
+
+**SWQMS helps visualize, analyze, and predict water quality conditions through real-time simulation and interactive analytics.**
